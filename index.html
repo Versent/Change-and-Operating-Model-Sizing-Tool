@@ -216,6 +216,12 @@
   .recommend-banner h3{margin:0 0 8px;font-size:20px;}
   .recommend-banner p{margin:0;color:var(--text-dim);font-size:13px;}
 
+  .flags-section{margin-bottom:20px;}
+  .flags-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);margin-bottom:10px;}
+  .flag-item{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;font-size:13px;color:var(--text);line-height:1.5;}
+  .flag-item.critical{border-left-color:#ff4d55;}
+  .flag-icon{flex-shrink:0;font-size:15px;}
+
   .reset-row{text-align:center;margin-top:12px;}
 
   footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;font-size:12px;color:var(--text-faint);}
@@ -546,8 +552,7 @@ function bandLabel(band){
 
 const changeContent = {
   Low: {
-    title: 'Operating Model Complexity: Low',
-    desc: 'Change Complexity: Low',
+    title: 'Change Complexity: Low',
     summary: 'This initiative appears to be low-impact from a change perspective. Reach is narrow, disruption to ways of working is limited, and the organisation is well placed to absorb it with minimal formal support.',
     activities: [
       'Confirm scope and impacted audience',
@@ -612,8 +617,7 @@ const omContent = {
       'RACI development',
       'Governance and escalation pathway review',
       'Workflow and handoff clarification',
-      'BAU transition planning',
-      'Change impact assessment alignment'
+      'BAU transition planning'
     ]
   },
   High: {
@@ -626,8 +630,7 @@ const omContent = {
       'Decision-rights mapping',
       'Governance model design',
       'Cross-team workflow design',
-      'BAU/service model definition',
-      'Readiness and adoption planning'
+      'BAU/service model definition'
     ]
   },
   VeryHigh: {
@@ -641,9 +644,7 @@ const omContent = {
       'Service model and BAU transition design',
       'RACI and accountability model',
       'Workflow and handoff design',
-      'Policy/control ownership model',
-      'Adoption roadmap',
-      'Readiness, enablement and reinforcement plan'
+      'Policy/control ownership model'
     ]
   }
 };
@@ -682,6 +683,21 @@ document.getElementById('calcBtn').addEventListener('click', () => {
 
   const bandA = bandFromScore(scoreA);
   const bandB = bandFromScore(scoreB);
+
+  /* ============ RISK FLAGS (ported from the Change Sizing Tool) ============ */
+  const flags = [];
+  if (answers.a7 >= 3) flags.push({critical:true, text:'Leadership sponsorship is weak or absent. This is the #1 predictor of change failure — escalate immediately and secure an active, visible executive sponsor before proceeding.'});
+  if (answers.a8 >= 3) flags.push({critical:false, text:'High change saturation detected. Sequence this program carefully against other active initiatives. Consider a change calendar to manage competing demands on affected people.'});
+  if (answers.a9 >= 3) flags.push({critical:false, text:'Poor track record with previous change programs. Expect elevated resistance. Invest early in trust-building activities and transparent communication about what is different this time.'});
+  if (answers.a10 >= 3) flags.push({critical:false, text:'No internal change capability. The organisation is fully dependent on external support — factor in knowledge transfer and internal uplift as a program outcome, not an afterthought.'});
+  if (answers.a6 >= 3 && scoreA >= 25) flags.push({critical:true, text:'Compressed timeline combined with medium-to-high complexity creates significant delivery risk. Consider phasing the rollout or increasing change resource to protect the schedule.'});
+
+  const flagsHtml = flags.length > 0
+    ? '<div class="flags-title">&#9888; Risk Flags</div>' + flags.map(f =>
+        `<div class="flag-item${f.critical ? ' critical' : ''}"><span class="flag-icon">${f.critical ? '&#128308;' : '&#128993;'}</span><span>${f.text}</span></div>`
+      ).join('')
+    : '<div class="flags-title">&#9888; Risk Flags</div><div class="flag-item" style="border-left-color:#1dbf73"><span class="flag-icon">&#128994;</span><span>No critical risk flags identified. This program has a solid foundation for successful change delivery.</span></div>';
+
   const recKey = `${bandA}|${bandB}`;
   const recommendation = recommendationMatrix[recKey] || 'Integrated transformation workstream';
   const recDesc = recommendationDescriptions[recommendation];
@@ -737,6 +753,8 @@ document.getElementById('calcBtn').addEventListener('click', () => {
       <p class="desc">${oContent.summary}</p>
       <ul>${oContent.activities.map(a => `<li>${a}</li>`).join('')}</ul>
     </div>
+
+    <div class="flags-section">${flagsHtml}</div>
 
     <div class="reset-row">
       <button class="btn ghost" id="resetBtn">↻ Start Again</button>
