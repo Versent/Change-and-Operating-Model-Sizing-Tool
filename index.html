@@ -748,6 +748,8 @@ document.getElementById('calcBtn').addEventListener('click', () => {
       <h3>${oContent.title}</h3>
       <p class="desc">${oContent.summary}</p>
       <ul>${oContent.activities.map(a => `<li>${a}</li>`).join('')}</ul>
+      <h3 style="margin-top:24px;">Typical depth</h3>
+  <p class="desc">${oContent.depth}</p>
     </div>
 
     <div class="flags-section">${flagsHtml}</div>
