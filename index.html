@@ -14,7 +14,7 @@
     --orange-dim: #1dbf7326;
     --teal: #17d97e;         /* secondary Versent green, slightly brighter — Module B accent */
     --text: #ffffff;
-    --text-dim: #ffffff;
+    --text-dim: #a8b0ac;
     --text-faint: #ffffff;
     --radius: 10px;
   }
@@ -221,6 +221,9 @@
   .flag-item{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;font-size:13px;color:var(--text);line-height:1.5;}
   .flag-item.critical{border-left-color:#ff4d55;}
   .flag-icon{flex-shrink:0;font-size:15px;}
+  .flag-body{display:flex;flex-direction:column;gap:3px;}
+  .flag-domain{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);}
+  .flag-domain.om{color:var(--teal);}
 
   .reset-row{text-align:center;margin-top:12px;}
 
@@ -231,7 +234,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <div class="brand"><img class="brand-mark" src="data:image/png;base64,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" alt="Versent"> VERSENT</div>
+    <div class="brand"><img class="brand-mark" src="data:image/png;base64,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" alt="Versent"> VERSENT<span> · VTAF</span></div>
     <div class="crumb">Business Strategy</div>
   </div>
 </div>
@@ -601,47 +604,51 @@ const changeContent = {
 const omContent = {
   Low: {
     title: 'Operating Model Complexity: Low',
-     summary: 'This initiative appears to require a rapid operating model assessment. The focus should be on validating the key issue, identifying the most important gaps and defining practical near-term actions.',
+    summary: 'This initiative appears to require light operating model alignment. Existing roles, governance and ways of working are likely to remain largely intact, with limited clarification required.',
     activities: [
-      'Rapid current-state assessment',
-      'Summary of priority findings',
-      'Practical, near-term recommendations',
-      'High-level action plan'
-    ],
-    depth: 'A light review of key documentation and a small number of stakeholder discussions. The assessment focuses on the most evident gaps in roles, ownership, governance, decision-making or ways of working. Recommendations are pragmatic and can generally be implemented within the initiative.'
+      'Confirm current ownership',
+      'Validate existing governance',
+      'Document any minor responsibility changes',
+      'Align communications with the change plan'
+    ]
   },
   Medium: {
     title: 'Operating Model Complexity: Medium',
-    summary: 'This initiative is likely to require a targeted assessment of the operating model components most affected. The analysis should establish the key issues, their impacts and the changes required across the relevant teams.',
+    summary: 'This initiative is likely to require targeted operating model design. Some responsibilities, workflows, governance pathways or BAU handoffs may need clarification before implementation.',
     activities: [
-      'Targeted current-state assessment',
-      'Themed findings and impacts',
-      'Prioritised recommendations',
-      'Phased implementation roadmap'
-    ],
-    depth: 'Focused document review, workshops and interviews across the affected teams. Findings cover the relevant operating model dimensions and explain their operational impacts. Recommendations identify specific improvements, while the roadmap sets out priorities, phases and key dependencies.'
+      'Responsibility mapping',
+      'RACI development',
+      'Governance and escalation pathway review',
+      'Workflow and handoff clarification',
+      'BAU transition planning'
+    ]
   },
   High: {
     title: 'Operating Model Complexity: High',
-    summary: 'This initiative requires a comprehensive assessment across multiple teams and interconnected operating model dimensions. The work should identify root causes, define integrated recommendations and establish a sequenced implementation pathway.',
+    summary: 'This initiative requires a dedicated operating model workstream. Roles, decision rights, workflows, governance or ownership boundaries are likely to change across multiple teams.',
     activities: [
-      'Comprehensive current-state and maturity assessment',
-      'Detailed findings, root causes and business impacts',
-      'Integrated operating model recommendations',
-      'Prioritised and sequenced implementation roadmap'
-    ],
-    depth: 'Extensive document review, workshops and interviews across multiple stakeholder groups. Findings examine the connections between structure, accountabilities, governance, decisions, processes, capabilities, performance, technology and data. Recommendations define the material shifts required, and the roadmap identifies initiatives, sequencing and dependencies.'
+      'Current-state operating model assessment',
+      'Future-state operating model design',
+      'Role and responsibility design',
+      'Decision-rights mapping',
+      'Governance model design',
+      'Cross-team workflow design',
+      'BAU/service model definition'
+    ]
   },
   VeryHigh: {
     title: 'Operating Model Complexity: Very High',
-    summary: 'This initiative requires an enterprise-scale assessment to establish the direction and pathway for significant operating model transformation. The work should address systemic issues, cross-functional dependencies and major target-state design choices.',
+    summary: 'This initiative requires full operating model design alongside a structured change and adoption workstream. The scale of responsibility, governance, workflow and BAU change is significant and should be treated as a core transformation dependency.',
     activities: [
-      'Enterprise current-state and maturity baseline',
-      'Cross-functional findings and systemic root-cause analysis',
-      'Target operating model recommendations and design direction',
-      'Transformation roadmap with workstreams, waves and dependencies'
-    ],
-    depth: 'Broad evidence gathering across business units, functions or geographies, involving diverse stakeholder groups and significant documentation. Findings identify systemic issues and enterprise-wide interdependencies. Recommendations establish the target-state direction and major design choices, while the roadmap defines transformation workstreams, transition stages, dependencies, governance and measures of success.'
+      'Full operating model discovery',
+      'Future-state operating model blueprint',
+      'Organisation and role impact assessment',
+      'Governance and decision-rights design',
+      'Service model and BAU transition design',
+      'RACI and accountability model',
+      'Workflow and handoff design',
+      'Policy/control ownership model'
+    ]
   }
 };
 
@@ -680,19 +687,21 @@ document.getElementById('calcBtn').addEventListener('click', () => {
   const bandA = bandFromScore(scoreA);
   const bandB = bandFromScore(scoreB);
 
-  /* ============ RISK FLAGS (ported from the Change Sizing Tool) ============ */
+  /* ============ RISK FLAGS (top 4 highest-signal predictors, Change + Op Model) ============ */
   const flags = [];
-  if (answers.a7 >= 3) flags.push({critical:true, text:'Leadership sponsorship is weak or absent. This is the #1 predictor of change failure — escalate immediately and secure an active, visible executive sponsor before proceeding.'});
-  if (answers.a8 >= 3) flags.push({critical:false, text:'High change saturation detected. Sequence this program carefully against other active initiatives. Consider a change calendar to manage competing demands on affected people.'});
-  if (answers.a9 >= 3) flags.push({critical:false, text:'Poor track record with previous change programs. Expect elevated resistance. Invest early in trust-building activities and transparent communication about what is different this time.'});
-  if (answers.a10 >= 3) flags.push({critical:false, text:'No internal change capability. The organisation is fully dependent on external support — factor in knowledge transfer and internal uplift as a program outcome, not an afterthought.'});
-  if (answers.a6 >= 3 && scoreA >= 25) flags.push({critical:true, text:'Compressed timeline combined with medium-to-high complexity creates significant delivery risk. Consider phasing the rollout or increasing change resource to protect the schedule.'});
+  // Change / OCM — top 2 predictors
+  if (answers.a7 >= 3) flags.push({critical:true, domain:'Change', text:'Leadership sponsorship is weak or absent. This is the #1 predictor of change failure — escalate immediately and secure an active, visible executive sponsor before proceeding.'});
+  if (answers.a6 >= 3 && scoreA >= 25) flags.push({critical:true, domain:'Change', text:'Compressed timeline combined with medium-to-high complexity creates significant delivery risk. Consider phasing the rollout or increasing change resource to protect the schedule.'});
+
+  // Operating Model — top 2 predictors
+  if (answers.b1 >= 4) flags.push({critical:true, domain:'Op Model', text:'Team structure requires major restructuring across multiple teams or business areas. This is a foundational design dependency — sequence it early, as roles, RACI and governance decisions depend on the structure being settled first.'});
+  if (answers.b4 >= 4) flags.push({critical:true, domain:'Op Model', text:'Accountability for outcomes is largely unclear, disputed or spread across multiple teams. Without a resolved ownership model, decision-making and delivery will stall — prioritise accountability design before detailed process work.'});
 
   const flagsHtml = flags.length > 0
     ? '<div class="flags-title">&#9888; Risk Flags</div>' + flags.map(f =>
-        `<div class="flag-item${f.critical ? ' critical' : ''}"><span class="flag-icon">${f.critical ? '&#128308;' : '&#128993;'}</span><span>${f.text}</span></div>`
+        `<div class="flag-item${f.critical ? ' critical' : ''}"><span class="flag-icon">${f.critical ? '&#128308;' : '&#128993;'}</span><div class="flag-body"><span class="flag-domain${f.domain === 'Op Model' ? ' om' : ''}">${f.domain}</span><span>${f.text}</span></div></div>`
       ).join('')
-    : '<div class="flags-title">&#9888; Risk Flags</div><div class="flag-item" style="border-left-color:#1dbf73"><span class="flag-icon">&#128994;</span><span>No critical risk flags identified. This program has a solid foundation for successful change delivery.</span></div>';
+    : '<div class="flags-title">&#9888; Risk Flags</div><div class="flag-item" style="border-left-color:#1dbf73"><span class="flag-icon">&#128994;</span><span>No critical risk flags identified. This program has a solid foundation for successful change and operating model delivery.</span></div>';
 
   const recKey = `${bandA}|${bandB}`;
   const recommendation = recommendationMatrix[recKey] || 'Integrated transformation workstream';
@@ -723,21 +732,6 @@ document.getElementById('calcBtn').addEventListener('click', () => {
       </div>
     </div>
 
-    <div class="recommend-banner">
-      <div class="tag">Recommended Approach</div>
-      <h3>${recommendation}</h3>
-      <p>${recDesc}</p>
-    </div>
-
-    <div class="panel-block">
-      <h3>Transformation Profile</h3>
-      <table class="profile-table">
-        <tr><td>Change Complexity</td><td>${bandLabel(bandA)}</td></tr>
-        <tr><td>Operating Model Complexity</td><td>${bandLabel(bandB)}</td></tr>
-        <tr><td>Recommended Approach</td><td>${recommendation}</td></tr>
-      </table>
-    </div>
-
     <div class="panel-block">
       <h3>${cContent.title}</h3>
       <p class="desc">${cContent.summary}</p>
@@ -748,8 +742,6 @@ document.getElementById('calcBtn').addEventListener('click', () => {
       <h3>${oContent.title}</h3>
       <p class="desc">${oContent.summary}</p>
       <ul>${oContent.activities.map(a => `<li>${a}</li>`).join('')}</ul>
-      <h3 style="margin-top:24px;">Typical depth</h3>
-  <p class="desc">${oContent.depth}</p>
     </div>
 
     <div class="flags-section">${flagsHtml}</div>
